@@ -1,0 +1,716 @@
+/* ==========================================================================
+   Login, relatório de notas e fórum
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Login
+   -------------------------------------------------------------------------- */
+
+body.sx-login-page #container {
+  width: auto !important;
+  margin: 0 !important;
+  min-block-size: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: transparent !important;
+}
+
+body.sx-login-page #cabecalho {
+  display: none !important;
+}
+
+body.sx-login-page #conteudo {
+  flex: 1;
+  display: grid;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.sx-login-page #conteudo > :not(.sx-login) {
+  display: none !important;
+}
+
+.sx-login {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(360px, 1fr);
+  min-block-size: 100%;
+}
+
+.sx-login-brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: clamp(2rem, 6vw, 5rem);
+  background:
+    radial-gradient(80% 60% at 0% 100%, color-mix(in oklch, var(--sx-highlight) 30%, transparent), transparent 70%),
+    radial-gradient(70% 70% at 100% 0%, color-mix(in oklch, var(--sx-primary) 14%, transparent), transparent 70%),
+    var(--sx-surface);
+  border-right: 1px solid var(--sx-border);
+}
+
+.sx-brand-lg .sx-brand-mark {
+  inline-size: 44px;
+  block-size: 44px;
+  border-radius: 12px;
+  font-size: 1.35rem;
+}
+
+.sx-brand-lg .sx-brand-text strong {
+  font-size: 1.25rem;
+}
+
+.sx-login-brand h1 {
+  max-inline-size: 14ch;
+  margin: 0.5rem 0 0 !important;
+  font-size: clamp(2.2rem, 4.4vw, 3.6rem) !important;
+  font-weight: 750;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  color: var(--sx-text);
+}
+
+.sx-login-brand > p {
+  margin: 0;
+  max-inline-size: 42ch;
+  font-size: 1.05rem;
+}
+
+.sx-systems {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  max-inline-size: 640px;
+}
+
+.sx-system,
+a.sx-system:is(:link, :visited) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--sx-border);
+  border-radius: var(--sx-radius-sm);
+  background: color-mix(in oklch, var(--sx-surface) 70%, transparent);
+  color: var(--sx-text) !important;
+  text-decoration: none !important;
+  transition: border-color var(--sx-t), background-color var(--sx-t);
+}
+
+.sx-system:hover {
+  border-color: var(--sx-text);
+  background: var(--sx-surface);
+}
+
+.sx-system b {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.sx-system span {
+  font-size: 0.72rem;
+  color: var(--sx-text-muted);
+}
+
+.sx-system-current {
+  border-color: var(--sx-text) !important;
+  box-shadow: inset 0 -3px 0 var(--sx-highlight);
+}
+
+.sx-login-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: clamp(2rem, 5vw, 4rem);
+}
+
+.sx-login-card .logon {
+  inline-size: min(380px, 100%) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.sx-login-card .logon h3 {
+  width: auto !important;
+  background: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 0 1.5rem !important;
+  color: var(--sx-text) !important;
+  font-size: 1.75rem !important;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  text-align: left !important;
+}
+
+.sx-login-card .logon table,
+.sx-login-card .logon table :is(tbody, tfoot, tr, th, td) {
+  display: block;
+  inline-size: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  text-align: left !important;
+}
+
+.sx-login-card .logon table tbody tr {
+  margin-bottom: 1rem;
+}
+
+.sx-login-card .logon table th {
+  margin-bottom: 0.4rem;
+  font-size: 0.82rem !important;
+  font-weight: 600;
+  color: var(--sx-text);
+}
+
+.sx-login-card .logon table :is(input[type="text"], input[type="password"]) {
+  inline-size: 100% !important;
+  min-block-size: 46px;
+  padding: 0.7rem 0.9rem !important;
+  font-size: 0.98rem !important;
+  border-radius: var(--sx-radius-sm) !important;
+}
+
+.sx-login-card .logon table input[type="submit"] {
+  inline-size: 100%;
+  min-block-size: 48px;
+  margin: 0.5rem 0 0 !important;
+  font-size: 0.98rem !important;
+  border-radius: var(--sx-radius-sm) !important;
+}
+
+.sx-login-note {
+  display: flex;
+  gap: 0.6rem;
+  inline-size: min(380px, 100%);
+  margin: 0 auto;
+  padding: 0.85rem 1rem;
+  border-radius: var(--sx-radius-sm);
+  background: color-mix(in oklch, var(--sx-highlight) 18%, white);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: oklch(0.35 0.06 85);
+  box-sizing: border-box;
+}
+
+.sx-login-note .sx-icon {
+  margin-top: 0.1rem;
+}
+
+body.sx-login-page #rodape {
+  background: transparent !important;
+  border: 0 !important;
+  border-top: 1px solid var(--sx-border) !important;
+  padding: 0.75rem 1.25rem !important;
+}
+
+body.sx-login-page #rodape :is(p, a) {
+  color: var(--sx-text-subtle) !important;
+  font-size: 0.72rem !important;
+  font-weight: 400 !important;
+}
+
+@media (max-width: 860px) {
+  .sx-login {
+    grid-template-columns: 1fr;
+  }
+
+  .sx-login-brand {
+    border-right: 0;
+    border-bottom: 1px solid var(--sx-border);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Relatório de notas
+   -------------------------------------------------------------------------- */
+
+@media screen {
+  .sx-print-only {
+    display: none !important;
+  }
+
+  body.sx-notas-page {
+    padding: 0 !important;
+  }
+}
+
+.sx-report :is(h1, h2, h3, h4) {
+  font-variant: normal !important;
+  text-align: left !important;
+  text-transform: none;
+  border: 0 !important;
+  background: none !important;
+  padding: 0 !important;
+}
+
+.sx-report {
+  max-inline-size: 1160px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem) 3rem;
+}
+
+.sx-report-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 calc(-1 * clamp(1rem, 3vw, 2rem)) 1.5rem;
+  padding: 0.75rem clamp(1rem, 3vw, 2rem);
+  background: color-mix(in oklch, var(--sx-bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--sx-border);
+  font-size: 0.78rem;
+}
+
+.sx-report-hero {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.sx-report-hero h1 {
+  margin: 0.3rem 0 0.25rem !important;
+  font-size: clamp(1.8rem, 3vw, 2.4rem) !important;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  color: var(--sx-text);
+}
+
+.sx-report-hero p {
+  margin: 0;
+}
+
+.sx-dist {
+  display: flex;
+  gap: 4px;
+  block-size: 30px;
+}
+
+.sx-dist-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-inline-size: 40px;
+  border-radius: 8px;
+  background: var(--sx-c);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.sx-filters {
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.sx-periods {
+  display: grid;
+  gap: 2rem;
+}
+
+.sx-period[hidden] {
+  display: none;
+}
+
+.sx-period h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.75rem !important;
+  font-size: 1.15rem !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--sx-text);
+}
+
+.sx-courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0.75rem;
+}
+
+.sx-periods[data-filtro="aprovado"] .sx-course:not([data-tipo="aprovado"]),
+.sx-periods[data-filtro="reprovado"] .sx-course:not([data-tipo="reprovado"]),
+.sx-periods[data-filtro="cancelado"] .sx-course:not([data-tipo="cancelado"]),
+.sx-periods[data-filtro="andamento"] .sx-course:not([data-tipo="andamento"]) {
+  display: none;
+}
+
+.sx-course {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--sx-border);
+  border-radius: var(--sx-radius);
+  background: var(--sx-surface);
+  transition: border-color var(--sx-t), box-shadow var(--sx-t);
+}
+
+.sx-course:hover {
+  border-color: var(--sx-border-strong);
+  box-shadow: var(--sx-shadow);
+}
+
+.sx-course-cancelado {
+  background: var(--sx-surface-2);
+}
+
+.sx-course-cancelado h3 {
+  color: var(--sx-text-muted) !important;
+}
+
+.sx-grade {
+  --sx-c: var(--sx-text-subtle);
+  display: grid;
+  place-items: center;
+  inline-size: 48px;
+  block-size: 48px;
+  border-radius: 13px;
+  background: color-mix(in oklch, var(--sx-c) 14%, white);
+  color: oklch(from var(--sx-c) 0.42 c h);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.sx-grade-ok { --sx-c: var(--sx-ok); }
+.sx-grade-good { --sx-c: var(--sx-good); }
+.sx-grade-mid { --sx-c: var(--sx-mid); }
+.sx-grade-warn { --sx-c: var(--sx-warn); }
+.sx-grade-bad { --sx-c: var(--sx-bad); }
+
+.sx-grade-none {
+  background: var(--sx-surface-3);
+  color: var(--sx-text-subtle);
+  font-size: 1rem;
+}
+
+.sx-dist-bar.sx-grade-ok { --sx-c: var(--sx-ok); }
+.sx-dist-bar.sx-grade-good { --sx-c: var(--sx-good); }
+.sx-dist-bar.sx-grade-mid { --sx-c: var(--sx-mid); }
+.sx-dist-bar.sx-grade-warn { --sx-c: var(--sx-warn); }
+.sx-dist-bar.sx-grade-bad { --sx-c: var(--sx-bad); }
+
+.sx-course-info {
+  min-inline-size: 0;
+}
+
+.sx-course h3 {
+  margin: 0.1rem 0 0.45rem !important;
+  font-size: 0.92rem !important;
+  font-weight: 650;
+  line-height: 1.3;
+  color: var(--sx-text);
+}
+
+.sx-course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  color: var(--sx-text-muted);
+}
+
+.sx-course-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sx-status {
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  background: var(--sx-surface-3);
+  font-weight: 650;
+  font-size: 0.7rem;
+}
+
+.sx-status-aprovado {
+  background: color-mix(in oklch, var(--sx-ok) 14%, white);
+  color: oklch(from var(--sx-ok) 0.42 c h);
+}
+
+.sx-status-reprovado {
+  background: color-mix(in oklch, var(--sx-bad) 12%, white);
+  color: oklch(from var(--sx-bad) 0.45 c h);
+}
+
+.sx-status-andamento {
+  background: var(--sx-primary-soft);
+  color: var(--sx-primary-ink);
+}
+
+.sx-units {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+
+.sx-units > span {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--sx-radius-xs);
+  background: var(--sx-surface-2);
+  border: 1px solid var(--sx-border);
+}
+
+.sx-units small {
+  font-size: 0.62rem;
+  color: var(--sx-text-subtle);
+}
+
+.sx-units b {
+  font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   Fórum: lista de tópicos
+   -------------------------------------------------------------------------- */
+
+.sx-forum-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--sx-border);
+  background: var(--sx-surface-2);
+}
+
+.sx-forum-toolbar .sx-search-inline {
+  margin-left: 0;
+}
+
+.sx-forum-toolbar input[type="submit"] {
+  margin: 0 !important;
+  background: var(--sx-surface) !important;
+  color: var(--sx-text) !important;
+  border-color: var(--sx-border-strong) !important;
+}
+
+.sx-topics {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sx-topic-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid color-mix(in oklch, var(--sx-border) 60%, transparent);
+  transition: background-color var(--sx-t);
+}
+
+.sx-topic-row:last-child {
+  border-bottom: 0;
+}
+
+.sx-topic-row:hover {
+  background: var(--sx-surface-2);
+}
+
+.sx-topic-row .sx-avatar {
+  inline-size: 36px;
+  block-size: 36px;
+}
+
+.sx-topic-main > a {
+  font-weight: 650;
+  font-size: 0.92rem;
+  color: var(--sx-text) !important;
+}
+
+.sx-topic-main > p {
+  margin: 0.1rem 0 0;
+  font-size: 0.78rem;
+}
+
+.sx-replies {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: var(--sx-primary-soft);
+  color: var(--sx-primary-ink);
+  font-size: 0.78rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.sx-replies-zero {
+  background: var(--sx-surface-3);
+  color: var(--sx-text-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   Fórum: tópico (thread)
+   -------------------------------------------------------------------------- */
+
+.sx-thread-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sx-thread-head h1 {
+  margin: 0.25rem 0 0.25rem !important;
+  font-size: clamp(1.6rem, 3vw, 2.1rem) !important;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  color: var(--sx-text);
+}
+
+.sx-thread-head p {
+  margin: 0;
+}
+
+body.sx-topic-page .sx-page-head {
+  margin-bottom: 0.75rem;
+}
+
+body.sx-topic-page .sx-page-head h1 {
+  display: none;
+}
+
+.sx-thread {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  max-inline-size: 860px;
+}
+
+.sx-msg {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.sx-msg-avatar {
+  --sx-hue: 262;
+  display: grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: oklch(0.93 0.05 var(--sx-hue));
+  color: oklch(0.38 0.12 var(--sx-hue));
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.sx-msg-avatar img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.sx-msg-bubble {
+  padding: 0.85rem 1.1rem 1rem;
+  border: 1px solid var(--sx-border);
+  border-radius: 4px var(--sx-radius-lg) var(--sx-radius-lg) var(--sx-radius-lg);
+  background: var(--sx-surface);
+  box-shadow: var(--sx-shadow-sm);
+}
+
+.sx-msg-first .sx-msg-bubble {
+  border-color: color-mix(in oklch, var(--sx-highlight) 60%, transparent);
+  background:
+    radial-gradient(100% 120% at 100% 0%, color-mix(in oklch, var(--sx-highlight) 16%, transparent), transparent 60%),
+    var(--sx-surface);
+}
+
+.sx-msg-bubble > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.6rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.78rem;
+}
+
+.sx-msg-bubble > header strong {
+  font-size: 0.88rem;
+  color: var(--sx-text);
+}
+
+.sx-msg-actions {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 0.15rem;
+}
+
+.sx-msg-actions .sx-icon-btn {
+  min-inline-size: 28px;
+  block-size: 28px;
+  opacity: 0.5;
+}
+
+.sx-msg:hover .sx-msg-actions .sx-icon-btn {
+  opacity: 1;
+}
+
+.sx-msg-body {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--sx-text);
+  overflow-wrap: anywhere;
+}
+
+/* paginação e resposta */
+body.sx-topic-page #conteudo :is(center, div[align="center"]):has(img[src*="pagina"], img[src*="first"], img[src*="prev"]) {
+  margin-bottom: 1.5rem;
+}
+
+body.sx-topic-page #conteudo textarea {
+  inline-size: 100% !important;
+  min-block-size: 140px;
+  border-radius: var(--sx-radius) !important;
+  padding: 0.85rem 1rem !important;
+  font-size: 0.92rem !important;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+body.sx-topic-page #conteudo {
+  max-inline-size: 920px;
+}
+
+body.sx-topic-page #conteudo table.formulario:not(.sx-hidden) {
+  margin-left: calc(44px + 0.85rem) !important;
+  inline-size: calc(100% - 44px - 0.85rem) !important;
+}
+
+body.sx-topic-page #conteudo table.formulario:not(.sx-hidden) > caption {
+  font-size: 0.95rem !important;
+}

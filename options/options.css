@@ -1,0 +1,192 @@
+:root {
+  color-scheme: light;
+  --ink: oklch(0.2 0.015 265);
+  --muted: oklch(0.5 0.018 265);
+  --border: oklch(0.915 0.008 260);
+  --bg: oklch(0.975 0.004 260);
+  --highlight: oklch(0.9 0.15 95);
+  --ok: oklch(0.6 0.15 155);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  min-inline-size: 360px;
+}
+
+main {
+  max-inline-size: 520px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+header {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  inline-size: 40px;
+  block-size: 40px;
+  flex: none;
+  border-radius: 11px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.15rem;
+  box-shadow: inset 0 -3px 0 var(--highlight);
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+mark {
+  background: linear-gradient(transparent 55%, var(--highlight) 55%, var(--highlight) 92%, transparent 92%);
+  color: inherit;
+}
+
+header p {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.options li + li {
+  border-top: 1px solid var(--border);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+}
+
+.text {
+  flex: 1;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.text strong {
+  font-size: 0.95rem;
+}
+
+.text small {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+code {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  padding: 0.05em 0.35em;
+  border-radius: 5px;
+  background: oklch(0.955 0.006 260);
+}
+
+/* interruptor */
+input[role="switch"] {
+  appearance: none;
+  position: relative;
+  inline-size: 44px;
+  block-size: 26px;
+  flex: none;
+  margin: 0;
+  border-radius: 999px;
+  background: oklch(0.86 0.01 260);
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+input[role="switch"]::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  inline-size: 20px;
+  block-size: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(16 24 40 / 0.25);
+  transition: transform 160ms ease;
+}
+
+input[role="switch"]:checked {
+  background: var(--ink);
+}
+
+input[role="switch"]:checked::after {
+  transform: translateX(18px);
+}
+
+input[role="switch"]:focus-visible {
+  outline: 2px solid oklch(0.53 0.2 262);
+  outline-offset: 2px;
+}
+
+.status {
+  min-block-size: 1.2em;
+  margin: 0.75rem 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: oklch(0.45 0.15 155);
+}
+
+.help {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.help summary {
+  padding: 0.85rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.help dl {
+  margin: 0;
+  padding: 0 1.1rem 1rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.help dt {
+  margin-top: 0.6rem;
+  font-weight: 650;
+}
+
+.help dd {
+  margin: 0.1rem 0 0;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

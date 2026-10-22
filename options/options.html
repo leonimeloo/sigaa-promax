@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SIGAA UFABC Pro Max · Opções</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <span class="mark" aria-hidden="true">S</span>
+        <div>
+          <h1>SIGAA <mark>Pro Max</mark></h1>
+          <p>Escolha o que a extensão altera no SIGAA da UFABC.</p>
+        </div>
+      </header>
+
+      <ul class="options">
+        <li>
+          <label class="option">
+            <span class="text">
+              <strong>Tema moderno</strong>
+              <small>Novo visual, barra lateral, painel do aluno, turma virtual, notas e fórum redesenhados. Desative para voltar ao layout original do SIGAA.</small>
+            </span>
+            <input type="checkbox" role="switch" id="tema" />
+          </label>
+        </li>
+        <li>
+          <label class="option">
+            <span class="text">
+              <strong>Horários legíveis</strong>
+              <small>Converte códigos como <code>3N34</code> em <b>Ter 21:00–23:00</b> e mostra o horário semanal. Desative para ver apenas os códigos originais.</small>
+            </span>
+            <input type="checkbox" role="switch" id="horarios" />
+          </label>
+        </li>
+      </ul>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+
+      <details class="help">
+        <summary>Como ler os códigos de horário</summary>
+        <dl>
+          <dt>Dias (números antes da letra)</dt>
+          <dd>2 Segunda · 3 Terça · 4 Quarta · 5 Quinta · 6 Sexta · 7 Sábado</dd>
+          <dt>Turno (letra)</dt>
+          <dd>M Matutino (08–12) · T Vespertino (14–18) · N Noturno (19–23)</dd>
+          <dt>Aulas (números após a letra)</dt>
+          <dd>Cada número é um bloco de 1h. Ex.: <code>2N123</code> = segunda, 19:00–22:00. Quando a turma usa a numeração até 5 (ex.: <code>2N45</code>), o último bloco continua sendo 21:00–23:00.</dd>
+        </dl>
+      </details>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

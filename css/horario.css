@@ -1,0 +1,92 @@
+/* ==========================================================================
+   Horários legíveis (chips). Carregado também quando o tema está desativado,
+   por isso os tokens têm valores de reserva.
+   ========================================================================== */
+
+.sx-hcode {
+  font-family: var(--sx-mono, ui-monospace, Menlo, Consolas, monospace) !important;
+  font-size: 0.72rem;
+  color: var(--sx-text-subtle, #8a93a3);
+  text-decoration: none;
+  cursor: help;
+}
+
+.sx-hchips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  vertical-align: middle;
+}
+
+.sx-hcode + .sx-hchips {
+  margin-left: 0.4rem;
+}
+
+.sx-hchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  background: var(--sx-surface-3, #eef0f4);
+  color: var(--sx-text, #1b1f27);
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sx-hchip b {
+  font-weight: 700;
+}
+
+.sx-hchip::before {
+  content: "";
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.sx-turno-M {
+  color: oklch(0.5 0.13 70);
+}
+
+.sx-turno-T {
+  color: oklch(0.52 0.15 30);
+}
+
+.sx-turno-N {
+  color: oklch(0.45 0.16 275);
+}
+
+.sx-hchip.sx-turno-M {
+  background: oklch(0.96 0.045 85);
+}
+
+.sx-hchip.sx-turno-T {
+  background: oklch(0.96 0.035 40);
+}
+
+.sx-hchip.sx-turno-N {
+  background: oklch(0.955 0.03 275);
+}
+
+.sx-hchip-periodo {
+  background: transparent;
+  border: 1px dashed var(--sx-border-strong, #d3d7de);
+  color: var(--sx-text-muted, #5b6472);
+}
+
+.sx-hchip-periodo::before {
+  display: none;
+}
+
+.sx-hchip-raw {
+  font-family: var(--sx-mono, ui-monospace, Menlo, Consolas, monospace) !important;
+}
+
+.sx-hchip-raw::before {
+  display: none;
+}

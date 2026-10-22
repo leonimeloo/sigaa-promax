@@ -1,0 +1,689 @@
+/* ==========================================================================
+   Casca: barra superior, barra lateral e layout das páginas clássicas
+   ========================================================================== */
+
+body.sx-app {
+  margin: 0 !important;
+}
+
+body.sx-app #container {
+  width: auto !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+body.sx-app #conteudo {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.sx-app #conteudo > h2:first-child,
+body.sx-app #conteudo > form > h2:first-child,
+body.sx-app #conteudo h2#title {
+  font-size: 1.6rem !important;
+  font-weight: 700;
+  font-variant: normal !important;
+  letter-spacing: -0.02em;
+  color: var(--sx-text) !important;
+  background: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 0 1.25rem !important;
+}
+
+body.sx-app #conteudo h2 a {
+  font-weight: 500;
+  color: var(--sx-text-muted) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Barra superior
+   -------------------------------------------------------------------------- */
+
+.sx-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  block-size: var(--sx-topbar-h);
+  padding: 0 1.25rem;
+  background: color-mix(in oklch, var(--sx-surface) 82%, transparent);
+  backdrop-filter: saturate(1.6) blur(14px);
+  border-bottom: 1px solid var(--sx-border);
+}
+
+.sx-topbar-spacer {
+  flex: 1;
+}
+
+.sx-brand,
+a.sx-brand:is(:link, :visited) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--sx-text) !important;
+  text-decoration: none !important;
+}
+
+.sx-brand-mark {
+  display: grid;
+  place-items: center;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: 9px;
+  background: var(--sx-text);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: -0.04em;
+  box-shadow: inset 0 -3px 0 var(--sx-highlight);
+}
+
+.sx-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.sx-brand-text strong {
+  font-size: 0.98rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+.sx-brand-text small {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--sx-text-muted);
+}
+
+.sx-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sx-session {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: var(--sx-surface-3);
+  color: var(--sx-text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sx-session span:not(.sx-icon) {
+  color: inherit !important;
+  font-style: normal !important;
+}
+
+.sx-avatar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0.25rem !important;
+  padding: 0.2rem 0.75rem 0.2rem 0.2rem !important;
+  border: 1px solid var(--sx-border) !important;
+  border-radius: 999px !important;
+  background: var(--sx-surface) !important;
+  color: var(--sx-text) !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  box-shadow: none !important;
+}
+
+.sx-avatar-btn:hover {
+  border-color: var(--sx-border-strong) !important;
+}
+
+.sx-avatar {
+  --sx-hue: 262;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 30px;
+  block-size: 30px;
+  flex: none;
+  border-radius: 50%;
+  background: oklch(0.93 0.05 var(--sx-hue));
+  color: oklch(0.38 0.12 var(--sx-hue));
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.sx-menu-toggle {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Layout com barra lateral
+   -------------------------------------------------------------------------- */
+
+.sx-shell {
+  display: block;
+}
+
+.sx-shell.sx-has-sidebar {
+  display: grid;
+  grid-template-columns: var(--sx-sidebar-w) minmax(0, 1fr);
+  min-block-size: calc(100dvh - var(--sx-topbar-h));
+  background: linear-gradient(to right, var(--sx-surface) calc(var(--sx-sidebar-w) - 1px), var(--sx-border) 0 var(--sx-sidebar-w), transparent 0);
+}
+
+.sx-main {
+  min-inline-size: 0;
+  padding: 1.75rem clamp(1rem, 3vw, 2.5rem) 3rem;
+  max-inline-size: 1320px;
+  margin-inline: auto;
+  inline-size: 100%;
+  box-sizing: border-box;
+}
+
+.sx-has-sidebar .sx-main {
+  margin-inline: 0;
+}
+
+.sx-sidebar {
+  position: sticky;
+  top: var(--sx-topbar-h);
+  block-size: calc(100dvh - var(--sx-topbar-h));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1rem 0.75rem 2rem;
+  scrollbar-width: thin;
+  box-sizing: border-box;
+}
+
+.sx-sidebar .sx-search {
+  margin: 0 0.25rem 0.85rem;
+  min-block-size: 36px;
+  background: var(--sx-surface-2);
+}
+
+.sx-nav-search {
+  font-size: 0.85rem !important;
+}
+
+.sx-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sx-nav a,
+.sx-nav summary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--sx-radius-xs);
+  color: var(--sx-text) !important;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: background-color var(--sx-t), color var(--sx-t);
+}
+
+.sx-nav a:hover,
+.sx-nav summary:hover {
+  background: var(--sx-surface-3);
+}
+
+.sx-nav-home {
+  font-weight: 650 !important;
+  margin-bottom: 0.5rem;
+}
+
+.sx-nav-home[aria-current="page"] {
+  background: var(--sx-primary-soft);
+  color: var(--sx-primary-ink) !important;
+}
+
+.sx-nav summary {
+  list-style: none;
+}
+
+.sx-nav summary::-webkit-details-marker {
+  display: none;
+}
+
+.sx-nav-group > summary {
+  font-weight: 650;
+}
+
+.sx-nav-group > summary img {
+  inline-size: 18px;
+  block-size: 18px;
+  object-fit: contain;
+}
+
+.sx-nav summary > span:not(.sx-icon) {
+  flex: 1;
+}
+
+.sx-chev {
+  color: var(--sx-text-subtle);
+  transition: transform var(--sx-t);
+}
+
+details[open] > summary > .sx-chev {
+  transform: rotate(90deg);
+}
+
+.sx-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sx-nav-list.sx-depth-0 {
+  margin: 2px 0 0.5rem 1.15rem;
+  padding-left: 0.65rem;
+  border-left: 1px solid var(--sx-border);
+}
+
+.sx-nav-list .sx-nav-list {
+  margin: 2px 0 0.25rem 0.75rem;
+  padding-left: 0.5rem;
+  border-left: 1px dashed var(--sx-border);
+}
+
+.sx-nav-list a,
+.sx-nav-list summary {
+  font-size: 0.82rem;
+  color: var(--sx-text-muted) !important;
+  padding-block: 0.38rem;
+}
+
+.sx-nav-list a:hover,
+.sx-nav-list summary:hover {
+  color: var(--sx-text) !important;
+}
+
+.sx-nav-sep {
+  block-size: 1px;
+  margin: 0.3rem 0.65rem;
+  background: var(--sx-border);
+}
+
+.sx-filtering .sx-nav-sep {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .sx-menu-toggle {
+    display: inline-grid !important;
+  }
+
+  .sx-shell.sx-has-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .sx-sidebar {
+    position: fixed;
+    inset: var(--sx-topbar-h) auto 0 0;
+    z-index: 80;
+    inline-size: min(var(--sx-sidebar-w), 86vw);
+    block-size: auto;
+    transform: translateX(-100%);
+    transition: transform 220ms var(--sx-ease);
+    box-shadow: var(--sx-shadow-lg);
+  }
+
+  .sx-nav-open .sx-sidebar {
+    transform: none;
+  }
+
+  .sx-topbar .sx-pill-highlight,
+  .sx-avatar-name,
+  .sx-session {
+    display: none;
+  }
+}
+
+/* rodapé e link "Portal do Discente" no fim das páginas */
+body.sx-app #rodape {
+  background: transparent !important;
+  border: 0 !important;
+  margin-top: 2.5rem;
+  padding: 1rem 0 0 !important;
+  border-top: 1px solid var(--sx-border) !important;
+}
+
+body.sx-app #rodape p,
+body.sx-app #rodape a {
+  color: var(--sx-text-subtle) !important;
+  font-size: 0.75rem !important;
+  font-weight: 400 !important;
+  text-align: left;
+}
+
+body.sx-app #container > div[style*="width: 80%"] {
+  width: auto !important;
+  margin-top: 2rem !important;
+  text-align: left !important;
+  font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   Seleção de módulos/portais (verMenuPrincipal)
+   -------------------------------------------------------------------------- */
+
+#menu_principal:has(#modulos, #portais) {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr);
+  gap: 2rem;
+  align-items: start;
+  padding: 0 !important;
+}
+
+#menu_principal #portais {
+  order: -1;
+}
+
+#menu_principal :is(#modulos, #portais) {
+  position: static !important;
+  width: auto !important;
+}
+
+#menu_principal :is(#modulos, #portais) > h2 {
+  font-size: 0.75rem !important;
+  font-weight: 650 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sx-text-muted) !important;
+  background: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 0 0.75rem !important;
+  font-variant: normal !important;
+}
+
+#menu_principal :is(#modulos, #portais) > h2:not(:first-child) {
+  margin-top: 2rem !important;
+}
+
+#menu_principal ul {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
+  gap: 0.6rem;
+  height: auto !important;
+  min-height: 0 !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+#menu_principal #portais ul {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+#menu_principal ul > br {
+  display: none;
+}
+
+#menu_principal ul li {
+  float: none !important;
+  position: relative !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 104px;
+  margin: 0 !important;
+  background-color: var(--sx-surface) !important;
+  background-position: center 16px !important;
+  background-size: auto 28px !important;
+  border: 1px solid var(--sx-border);
+  border-radius: var(--sx-radius);
+  transition: border-color var(--sx-t), box-shadow var(--sx-t), transform var(--sx-t);
+}
+
+/* acessos disponíveis primeiro */
+#menu_principal ul li.on {
+  order: -1;
+  border-color: var(--sx-border-strong);
+  box-shadow: var(--sx-shadow);
+}
+
+#menu_principal ul li a {
+  position: absolute !important;
+  inset: 0;
+  width: auto !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 0.5rem 0.75rem !important;
+  background: none !important;
+  color: var(--sx-text) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  line-height: 1.25;
+  text-align: center;
+  border-radius: inherit;
+  box-sizing: border-box;
+  text-decoration: none !important;
+}
+
+#menu_principal ul li a br {
+  display: none;
+}
+
+#menu_principal ul li.on:hover {
+  border-color: var(--sx-text);
+  transform: translateY(-2px);
+  box-shadow: var(--sx-shadow-lg);
+}
+
+#menu_principal ul li.on::after {
+  content: "Disponível";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--sx-highlight) 60%, white);
+  color: oklch(0.35 0.08 85);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#menu_principal ul li.off {
+  background-color: transparent !important;
+  border-style: dashed;
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
+#menu_principal ul li.off a,
+#menu_principal .tooltip {
+  color: var(--sx-text-muted) !important;
+  font-weight: 500 !important;
+  cursor: not-allowed;
+}
+
+#menu_principal ul li.off:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+  #menu_principal:has(#modulos, #portais) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Fallback do cabeçalho original (páginas sem a casca)
+   -------------------------------------------------------------------------- */
+
+body:not(.sx-app):not(.sx-ava) #info-sistema {
+  background: var(--sx-text) !important;
+  border: 0 !important;
+  padding: 0.6rem 1rem !important;
+}
+
+body:not(.sx-app):not(.sx-ava) #info-sistema :is(h1, h1 span, h3, span, a) {
+  color: #fff !important;
+}
+
+body:not(.sx-app):not(.sx-ava) #painel-usuario {
+  background: var(--sx-surface) !important;
+  border-bottom: 1px solid var(--sx-border);
+}
+
+/* --------------------------------------------------------------------------
+   Trilha + título de página
+   -------------------------------------------------------------------------- */
+
+.sx-page-head {
+  margin: 0 0 1.5rem;
+}
+
+.sx-crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--sx-text-muted);
+}
+
+.sx-crumbs a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--sx-text-muted) !important;
+  font-weight: 500;
+}
+
+.sx-crumbs a:hover {
+  color: var(--sx-text) !important;
+}
+
+.sx-crumbs .sx-icon {
+  color: var(--sx-text-subtle);
+}
+
+.sx-page-head h1 {
+  margin: 0.4rem 0 0 !important;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem) !important;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--sx-text);
+}
+
+/* h2 restantes do SIGAA (sem trilha) */
+:where(body.sx-app #conteudo) h2:not(.sx-hidden) {
+  font-variant: normal !important;
+  background: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  color: var(--sx-text) !important;
+  letter-spacing: -0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   Seus acessos (verMenuPrincipal)
+   -------------------------------------------------------------------------- */
+
+.sx-access {
+  margin: 1rem 0 2rem;
+}
+
+.sx-access h1 {
+  margin: 0.4rem 0 1.5rem !important;
+  font-size: clamp(1.9rem, 3.4vw, 2.8rem) !important;
+  font-weight: 750;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--sx-text);
+}
+
+.sx-access-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+a.sx-access-card:is(:link, :visited) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid var(--sx-border-strong);
+  border-radius: var(--sx-radius-lg);
+  background:
+    radial-gradient(120% 120% at 100% 0%, color-mix(in oklch, var(--sx-highlight) 22%, transparent), transparent 60%),
+    var(--sx-surface);
+  color: var(--sx-text) !important;
+  text-decoration: none !important;
+  box-shadow: var(--sx-shadow);
+  transition: transform var(--sx-t), box-shadow var(--sx-t), border-color var(--sx-t);
+}
+
+a.sx-access-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--sx-text);
+  box-shadow: var(--sx-shadow-lg);
+}
+
+.sx-access-icon {
+  inline-size: 44px;
+  block-size: 44px;
+  border-radius: 12px;
+  background-color: var(--sx-surface-2);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px auto;
+  border: 1px solid var(--sx-border);
+}
+
+.sx-access-card strong {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.sx-access-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: var(--sx-text-muted);
+}
+
+.sx-all-modules > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--sx-border);
+  border-radius: 999px;
+  background: var(--sx-surface);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.sx-all-modules > summary::-webkit-details-marker {
+  display: none;
+}
+
+.sx-all-modules[open] > summary {
+  margin-bottom: 1.5rem;
+}
