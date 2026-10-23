@@ -250,14 +250,12 @@
       }
     }
     lines.push('END:VCALENDAR');
-    const blob = new Blob([lines.filter(Boolean).join('\r\n')], { type: 'text/calendar' });
-    const a = h('a', { href: URL.createObjectURL(blob), download: 'horarios-sigaa.ics' });
+    // data: em vez de blob: — blobs criados em content script não baixam de forma confiável no Firefox
+    const ics = lines.filter(Boolean).join('\r\n');
+    const a = h('a', { href: `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`, download: 'horarios-sigaa.ics' });
     document.body.append(a);
     a.click();
-    setTimeout(() => {
-      URL.revokeObjectURL(a.href);
-      a.remove();
-    }, 1000);
+    a.remove();
   }
 
   /** Cartão completo: alterna Semana/Lista + exportação. */

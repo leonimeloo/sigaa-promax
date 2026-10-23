@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SIGAA UFABC Pro Max",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Redesenha o SIGAA da UFABC: painel do aluno, horário semanal legível, turma virtual, notas e fórum modernos.",
   "icons": {
     "16": "icons/icon16.png",

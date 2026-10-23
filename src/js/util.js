@@ -24,7 +24,6 @@
           else node.style[prop] = v;
         }
       }
-      else if (key === 'html') node.innerHTML = value;
       else node.setAttribute(key, value === true ? '' : value);
     }
     for (const child of children.flat(Infinity)) {
@@ -173,11 +172,21 @@
     x: '<path d="M18 6 6 18M6 6l12 12"/>',
   };
 
+  // SVGs estáticos acima; DOMParser em vez de innerHTML (exigência da revisão do Firefox)
+  const svgCache = new Map();
+  const svg = (name) => {
+    if (!svgCache.has(name)) {
+      const markup = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${ICONS[name]}</svg>`;
+      svgCache.set(name, new DOMParser().parseFromString(markup, 'image/svg+xml').documentElement);
+    }
+    return document.importNode(svgCache.get(name), true);
+  };
+
   SX.icon = (name, cls = '') => {
     const span = document.createElement('span');
     span.className = 'sx-icon ' + cls;
     span.setAttribute('aria-hidden', 'true');
-    span.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${ICONS[name] || ICONS.file}</svg>`;
+    span.append(svg(name in ICONS ? name : 'file'));
     return span;
   };
 
