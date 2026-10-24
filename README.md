@@ -8,6 +8,7 @@ Interface redesenhada, moderna e criada pensando na experiência do usuário.
 
 <a href="https://chromewebstore.google.com/detail/imoodngikpcnjbfmlccfokaomkglkphc"><img src="assets/chrome-web-store-badge.png" alt="Disponível na Chrome Web Store" height="58"></a>
 <a href="https://addons.mozilla.org/pt-BR/firefox/addon/sigaa-ufabc-pro-max"><img src="assets/firefox-addons-badge.png" alt="Disponível no Firefox Add-ons" height="58"></a>
+<a href="https://microsoftedge.microsoft.com/addons/detail/aiajkmbhblcpnimljkbfgndfhhedgohe"><img src="assets/edge-addons-badge.png" alt="Disponível no Edge Add-ons" height="58"></a>
 <a href="https://addons.opera.com/pt-br/extensions/details/sigaa-ufabc-pro-max"><img src="assets/opera-addons-badge.png" alt="Disponível no Opera Add-ons" height="58"></a>
 
 ![Portal do Discente com o novo visual](assets/screenshots/03-portal-discente.png)
@@ -147,6 +148,7 @@ O código é aberto e pode ser conferido neste repositório.
 |---|---|
 | Google Chrome | <a href="https://chromewebstore.google.com/detail/imoodngikpcnjbfmlccfokaomkglkphc"><img src="assets/chrome-web-store-badge.png" alt="Disponível na Chrome Web Store" height="38"></a> |
 | Mozilla Firefox | <a href="https://addons.mozilla.org/pt-BR/firefox/addon/sigaa-ufabc-pro-max"><img src="assets/firefox-addons-badge.png" alt="Disponível no Firefox Add-ons" height="38"></a> |
+| Microsoft Edge | <a href="https://microsoftedge.microsoft.com/addons/detail/aiajkmbhblcpnimljkbfgndfhhedgohe"><img src="assets/edge-addons-badge.png" alt="Disponível no Edge Add-ons" height="38"></a> |
 | Opera | <a href="https://addons.opera.com/pt-br/extensions/details/sigaa-ufabc-pro-max"><img src="assets/opera-addons-badge.png" alt="Disponível no Opera Add-ons" height="38"></a> |
 
 1. Clique no selo do seu navegador na tabela acima para abrir a página da extensão.
@@ -155,7 +157,7 @@ O código é aberto e pode ser conferido neste repositório.
    - **Chrome:** **Usar no Chrome** (ou **Adicionar ao Chrome**).
    - **Firefox:** **Adicionar ao Firefox**.
    - **Opera:** **Adicionar ao Opera**.
-   - **Edge**: siga os mesmos passos para o Chrome
+   - **Edge**: **Obter**.
 
 3. Na janela de confirmação, clique em **Adicionar extensão** (no Firefox, **Adicionar**).
 
